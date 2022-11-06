@@ -20,9 +20,10 @@ app.use(bodyParser.json());
 app.post("/usercheck", (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
+  const database = req.body.database;
   console.log("username: ", username);
   //promise based user authentication
-  findUser(username, password)
+  findUser(username, password, database)
     .then(() => {
       console.log("User found");
       res.status(200).json({ loginSuccessful: true });

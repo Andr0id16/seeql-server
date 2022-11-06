@@ -1,13 +1,13 @@
 import { Sequelize } from "sequelize";
 
-const DATABASE_NAME = "mysql";
+// const DATABASE_NAME = "mysql";
 const DATABASE_HOST = "localhost";
 
 // promise based authentication
-export function findUser(username, password) {
+export function findUser(username, password, database) {
   console.log("Authenticating User");
   return new Promise((resolve, reject) => {
-    const dbConnection = new Sequelize(DATABASE_NAME, username, password, {
+    const dbConnection = new Sequelize(database, username, password, {
       host: DATABASE_HOST,
       dialect: "mysql",
     });
