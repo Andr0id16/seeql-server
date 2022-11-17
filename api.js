@@ -42,15 +42,27 @@ app.get("/query/:query", async (req, res) => {
   const query = req.params.query;
   console.log("QUERY:  ", query);
   const [results, metaData] = await dbConnection.query(query);
-  console.log("RESULTS :  ", results);
-  // let processedresults = await Promise.all(
-  //   results.map((tablename) => Object.values(tablename))
-  // );
-  // res.json(JSON.stringify(processedresults));
-  res.json(JSON.stringify(results));
+  // Grid.js does not work with Uppercase Keys in JSON data
+  res.json(lowerJSONKeys(results));
 });
 
 app.listen(PORT, (error) => {
   if (error) console.error(error);
   console.log(`seeql-server listening on port ${PORT}`);
 });
+
+function lowerJSONKeys(results) {
+  // code to convert keys of JSON to lowercase
+  // https://stackoverflow.com/a/12540603
+  var key;
+  var keys = Object.keys(results);
+  var n = keys.length;
+  var newobj = {};
+  while (n--) {
+    key = keys[n];
+    newobj[key.toLowerCase()] = results[key];
+  }
+
+  console.log("RESULTS: ", Object.values(newobj));
+  return Object.values(newobj);
+}

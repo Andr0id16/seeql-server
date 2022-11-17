@@ -25,21 +25,3 @@ export function findUser(username, password, database) {
       });
   });
 }
-// import "mysql";
-// function findUser() {
-//   return new Promise((resolve, reject) => {
-//     var con = mysql.createConnection({
-//       host: DATABASE_HOST,
-//       user: database_user,
-//       password: password,
-//       database: DATABASE_NAME,
-//     });
-
-//     con.connect(function (err) {
-//       if (err) reject();
-//       console.log("Connected!");
-//       resolve();
-//     });
-//   });
-// }
-``;

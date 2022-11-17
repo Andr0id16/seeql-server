@@ -2,7 +2,7 @@ import { Sequelize } from "sequelize";
 const DATABASE_HOST = "localhost";
 const DATABASE_USERNAME = "aragorn";
 const DATABASE_PASSWORD = "Aragorn@125626";
-const DATABASE_NAME = "railway";
+const DATABASE_NAME = "supplychain";
 export function getConnection() {
   return new Promise((resolve, reject) => {
     const dbConnection = new Sequelize(
