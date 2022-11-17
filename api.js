@@ -43,7 +43,10 @@ app.get("/query/:query", async (req, res) => {
   console.log("QUERY:  ", query);
   const [results, metaData] = await dbConnection.query(query);
   // Grid.js does not work with Uppercase Keys in JSON data
-  res.json(lowerJSONKeys(results));
+  console.log("Metadata: ", metaData.info);
+  if (query.startsWith("select")) res.json(lowerJSONKeys(results));
+  else if (metaData.info) res.json([{ result: metaData.info }]);
+  else res.json([{ query: "successful" }]);
 });
 
 app.listen(PORT, (error) => {
